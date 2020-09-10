@@ -1,0 +1,12 @@
+﻿ 
+/// <summary>UI名称</summary>
+public class UIFormNames
+{
+    $UIAttributes
+}
+
+/// <summary>UI类型</summary>
+public enum EnumUIFormType
+{
+     $UIType
+}

@@ -1,0 +1,6 @@
+﻿string/Name,int/LandType,int/UIFormsDepth,int/UIFormShowMode,string/ResourcesPath,string/AssetBundlePath,string/AssetName,string/Des
+BackgroundUIForm,0,0,0,UIPrefabs/BackgroundUIForm,,,背景UI面板
+MainUIForm,0,0,0,UIPrefabs/MainUIForm,,,主页UI面板
+AllMsgUIForm,0,0,0,UIPrefabs/AllMsgUIForm,,,全部消息清单
+SelectMsgUIForm,0,0,0,UIPrefabs/SelectMsgUIForm,,,选中消息UI面板
+LatestMsgUIForm,0,0,0,UIPrefabs/LatestMsgUIForm,,,最新消息面板

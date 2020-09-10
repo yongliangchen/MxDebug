@@ -1,0 +1,12 @@
+﻿ 
+/// <summary>声音名称</summary>
+public class AudioNames
+{
+    $AudioAttributes
+}
+
+/// <summary>UI类型</summary>
+public enum EnumAudioType
+{
+     $AudioType
+}

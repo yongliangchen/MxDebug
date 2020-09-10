@@ -1,0 +1,35 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Mx.UI;
+using Mx.Msg;
+using Mx.Util;
+using UnityEngine.UI;
+
+/// <summary> $classNote </summary>
+public class $className : BaseUIForm
+{
+    private void Awake()
+    {
+        RigisterAllButtonObjectEvent(OnClickButton);
+        MessageMgr.AddMsgListener("$messageType",OnUIFormMessagesEvent);
+    }
+
+    private void OnDestroy()
+    {
+        MessageMgr.RemoveMsgListener("$messageType", OnUIFormMessagesEvent);
+    }
+
+    private void OnClickButton(GameObject click)
+    {
+        switch(click.name)
+        {
+            case "BtnClose": CloseUIForm(); break;
+        }
+    }
+
+    private void OnUIFormMessagesEvent(string key, object values)
+    {
+        
+    }
+}

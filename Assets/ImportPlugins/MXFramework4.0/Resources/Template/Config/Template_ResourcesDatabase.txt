@@ -1,0 +1,85 @@
+﻿using UnityEngine;
+using System.Collections.Generic;
+using Mx.Util;
+using System;
+
+namespace Mx.Config
+{
+    [Serializable]
+	public class $DataClassName
+	{
+		$DataAttributes
+	}
+
+	public class $DataTypeName:IDatabase
+	{
+		public const uint TYPE_ID = $DataID;
+		public const string DATA_PATH = $DataPath;
+       
+		private string[][] m_datas;
+        private Dictionary<string, $DataClassName> dicData = new Dictionary<string, $DataClassName>();
+        private List<$DataClassName> listData = new List<$DataClassName>();
+
+		public $DataTypeName(){}
+
+		public uint TypeID()
+		{
+			return TYPE_ID;
+		}
+
+		public string DataPath()
+		{
+			return ConfigDefine.GetResoucesConfigOutPath + DATA_PATH;
+		}
+
+        public void Load()
+        {
+          dicData.Clear();
+          listData.Clear();
+
+           TextAsset textAsset = Resources.Load<TextAsset>(DataPath());
+           string str = textAsset.text;
+           if (string.IsNullOrEmpty(str))
+           {
+               Debug.LogError(GetType() + "/Load()/ load config error! path:" + DataPath());
+           }
+         
+          string textData = StringEncrypt.DecryptDES(str);
+          m_datas = CSVConverter.SerializeCSVData(textData);
+          Serialization();
+
+        }
+
+		private void Serialization()
+		{
+			for(int cnt = 0; cnt < m_datas.Length; cnt++)
+			{
+                $DataClassName m_tempData = new $DataClassName();
+			    $CsvSerialize
+                if(!dicData.ContainsKey(m_datas[cnt][0]))
+                {
+                    dicData.Add(m_datas[cnt][0], m_tempData);
+                    listData.Add(m_tempData);
+                }
+			}
+		}
+
+        public $DataClassName GetDataByKey(string key)
+        {
+            $DataClassName data;
+            dicData.TryGetValue(key, out data);
+            return data;
+        }
+
+		public int GetCount()
+		{
+			return listData.Count;
+		}
+
+        public List <$DataClassName> GetAllData()
+        {
+            return listData;
+        }
+
+	}
+}
